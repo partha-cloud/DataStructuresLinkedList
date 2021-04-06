@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 
+import java.util.stream.Stream;
+
 public class MyLinkedListTest {
     // static  MyLinkedList myLinkedList = new MyLinkedList();
     @Test
@@ -80,10 +82,27 @@ public class MyLinkedListTest {
         myLinkedList.append(myThirdNode);
         myLinkedList.insert(myFirstNode, mySecondNode);
         myLinkedList.popLast();
-        System.out.println("The deleted element is :" + myThirdNode.getKey());
+        System.out.println("The deleted element is :" +myThirdNode.getKey());
         myLinkedList.show();
-        boolean result = myLinkedList.head.equals(myFirstNode) &&
+        boolean result =    myLinkedList.head.equals(myFirstNode) &&
                 myLinkedList.tail.equals(mySecondNode);
+        Assertions.assertTrue(result);
+    }
+    @Test
+    public void givenElement_WhenSearch_ShouldPassTest() {
+        MyNode<Integer> myFirstNode = new MyNode<>(56);
+        MyNode<Integer> mySecondNode = new MyNode<>(30);
+        MyNode<Integer> myThirdNode = new MyNode<>(70);
+
+        MyLinkedList myLinkedList = new MyLinkedList();
+
+        myLinkedList.append(myFirstNode);
+        myLinkedList.append(mySecondNode);
+        myLinkedList.append(myThirdNode);
+
+        myLinkedList.show();
+        System.out.println("The searching element[True-present;False-absent] "+myLinkedList.searchElement(myThirdNode));
+        boolean result = myLinkedList.searchElement(myThirdNode);
         Assertions.assertTrue(result);
     }
 }
